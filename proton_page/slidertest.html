@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Slider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .slide {
+            width: 357px;
+            height: 550px;
+            position: relative;
+            transition: all 0.5s ease;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 20px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* .slide:hover .slide-img {
+            transform: scale(1.05);
+        } */
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 15px;
+            height: 64vh;
+        }
+
+        .slides-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            right: 53px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            opacity: 0.8;
+        }
+
+        .nav-btn:hover {
+            background-color: #4338ca;
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .nav-btn:disabled {
+            background-color: #c7d2fe;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 1200px) {
+            .slide {
+                width: 300px;
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 45vw;
+                height: 400px;
+            }
+
+            .slide-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .slide-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                width: calc(100vw - 40px);
+                max-height: 100vh;
+                max-width: 72vw;
+            }
+
+            .slide-content {
+                padding: 15px;
+            }
+
+            .slide-content h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .slide-content p {
+                font-size: 0.8rem;
+            }
+
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full" style="padding-top: 20px;">
+
+        <div class="slides-wrapper">
+            <div class="slides-container" id="slidesContainer">
+            </div>
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slidesContainer = document.getElementById('slidesContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideGap = 15;
+
+            // Sample data for slides
+            const slidesData = [
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'What Is Proton?',
+                    description: 'Proton is Atomo Innovation’s advanced smart home controller built for tech-savvy users, prosumers, and premium automation setups.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Why It Was Created?',
+                    description: 'To deliver a powerful, secure, and future-ready smart home hub that goes beyond basic automation.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: "Who It's For",
+                    description: 'Designed for smart homeowners, home automation integrators, and builders who want deep customization and robust control.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Lives at the Heart of the Home',
+                    description: 'Proton acts as the intelligent core, connecting and orchestrating devices, sensors, scenes, and routines in real-time.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Engineered for Performance',
+                    description: 'With dedicated compute power and smart scheduling, it manages complex automation with low latency and high reliability.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Personalized Control',
+                    description: 'From voice to app to AI-generated routines - Proton adapts to your lifestyle and preferences.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Built for the Smart Home of Tomorrow',
+                    description: 'Future-proofed with support for Matter, Thread, Zigbee, and more - ready for the next wave of connected devices.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Security First, Always',
+                    description: 'Local processing and secure architecture ensure your home stays private and protected.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Works Seamlessly with Atomo Devices',
+                    description: 'Integrates tightly with Neutron and Electron for a unified home-and-industry experience.'
+                },
+                {
+                    image: '/proton_page/Frame.svg',
+                    title: 'Elegantly Indian, Globally Capable',
+                    description: 'Developed in India with international compatibility - Proton reflects modern living across continents.'
+                }
+            ];
+
+            // Create slides
+            slidesData.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.className = 'slide';
+                slideElement.innerHTML = `
+                    <img src="${slide.image}" alt="${slide.title}" class="slide-img">
+                    <div class="slide-content">
+                        <h3 class="text-2xl font-bold mb-2">${slide.title}</h3>
+                        <p class="text-base">${slide.description}</p>
+                    </div>
+                `;
+                slidesContainer.appendChild(slideElement);
+            });
+
+            const slides = document.querySelectorAll('.slide');
+            let currentPosition = 0;
+
+            function getVisibleSlidesCount() {
+                const containerWidth = slidesContainer.parentElement.offsetWidth;
+                const slideWidth = window.innerWidth <= 480 ? containerWidth :
+                                 window.innerWidth <= 768 ? (containerWidth / 2) :
+                                 window.innerWidth <= 1200 ? 300 : 357;
+                const totalWidthPerSlide = slideWidth + slideGap;
+                return Math.floor(containerWidth / totalWidthPerSlide) || 1;
+            }
+
+            function updateSlideWidths() {
+                const containerWidth = slidesContainer.parentElement.offsetWidth;
+                const visibleCount = getVisibleSlidesCount();
+                let slideWidth;
+
+                if (window.innerWidth <= 480) {
+                    slideWidth = containerWidth;
+                    slides.forEach(slide => slide.style.width = `${slideWidth}px`);
+                } else if (window.innerWidth <= 768) {
+                    slideWidth = (containerWidth - (visibleCount - 1) * slideGap) / visibleCount;
+                    slides.forEach(slide => slide.style.width = `${slideWidth}px`);
+                } else if (window.innerWidth <= 1200) {
+                    slideWidth = 300;
+                    slides.forEach(slide => slide.style.width = `${slideWidth}px`);
+                } else {
+                    slideWidth = 357;
+                    slides.forEach(slide => slide.style.width = `${slideWidth}px`);
+                }
+                return slideWidth;
+            }
+
+            function updateButtons() {
+                const visibleCount = getVisibleSlidesCount();
+                prevBtn.disabled = currentPosition === 0;
+                nextBtn.disabled = currentPosition >= slides.length - visibleCount;
+            }
+
+            function moveSlides() {
+                const slideWidth = updateSlideWidths();
+                const offset = currentPosition * (slideWidth + slideGap);
+                slidesContainer.style.transform = `translateX(-${offset}px)`;
+                updateButtons();
+            }
+
+            // Event listeners for buttons
+            prevBtn.addEventListener('click', () => {
+                if (currentPosition > 0) {
+                    currentPosition--;
+                    moveSlides();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const visibleCount = getVisibleSlidesCount();
+                if (currentPosition < slides.length - visibleCount) {
+                    currentPosition++;
+                    moveSlides();
+                }
+            });
+
+            // Handle window resize
+            function handleResize() {
+                const visibleCount = getVisibleSlidesCount();
+                currentPosition = Math.min(currentPosition, slides.length - visibleCount);
+                moveSlides();
+            }
+
+            window.addEventListener('resize', handleResize);
+
+            // Initial setup
+            updateSlideWidths();
+            updateButtons();
+            moveSlides();
+        });
+    </script>
+</body>
+
+</html>
