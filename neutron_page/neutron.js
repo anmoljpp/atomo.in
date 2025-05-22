@@ -304,15 +304,25 @@ document.addEventListener('DOMContentLoaded', function () {
             slider.style.transform = `translateX(${translateX}px)`;
 
             // Center the slides on mobile
+            // if (slidesToShow === 1) {
+            //     const offset = (containerWidth - slideWidth) / 2;
+            //     slider.style.transform = `translateX(calc(${translateX}px + ${offset}px))`;
+            // }
             if (slidesToShow === 1) {
                 const offset = (containerWidth - slideWidth) / 2;
-                slider.style.transform = `translateX(calc(${translateX}px + ${offset}px))`;
+                translateX += offset;
             }
 
-            // Disable buttons at boundaries
-            prevBtn.disabled = currentIndex === 0;
+            slider.style.transform = `translateX(${translateX}px)`;
+
+            // Update button states
+            preview.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex >= slides.length - slidesToShow;
         }
+        // Disable buttons at boundaries
+        //     prevBtn.disabled = currentIndex === 0;
+        //     nextBtn.disabled = currentIndex >= slides.length - slidesToShow;
+        // }
 
         function autoSlide() {
             const slidesToShow = updateSlidesToShow();

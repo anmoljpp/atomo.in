@@ -8,7 +8,7 @@
     color: #000;
     font-weight: bold;
 }
- 
+
 /* ========== COLOR PALETTE ========== */
 :root {
     --primary-color: #2b6cb0;
@@ -269,68 +269,93 @@ body {
 }
 
 /* Second and Fourth Page Slider Fixes */
-.features-slider-container, .features-slider-container1 {
+.features-slider-container,
+.features-slider-container1 {
     width: 100%;
     position: relative;
-    overflow: hidden; /* This will hide anything going outside */
-    padding: 0 10px; /* Add some padding so content doesn't touch edges */
+    overflow: hidden;
+    /* This will hide anything going outside */
+    padding: 0 10px;
+    /* Add some padding so content doesn't touch edges */
     box-sizing: border-box;
 }
 
-.features-slider, .features-slider2 {
+.features-slider,
+.features-slider2 {
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 100%;
-    padding: 0 5px; /* Reduced padding */
+    padding: 0 5px;
+    /* Reduced padding */
     box-sizing: border-box;
-    will-change: transform; /* Optimize for animation */
+    will-change: transform;
+    /* Optimize for animation */
 }
 
-.feature-slide, .feature-slide2 {
-    flex: 0 0 calc(100% - 20px); /* Full width minus margins on mobile */
-    margin: 0 10px; /* Reduced margin on mobile */
+.feature-slide,
+.feature-slide2 {
+    flex: 0 0 calc(100% - 20px);
+    /* Full width minus margins on mobile */
+    margin: 0 10px;
+    /* Reduced margin on mobile */
     background-color: #fff;
     border-radius: 12px;
-    padding: 20px 15px; /* Reduced padding on mobile */
+    padding: 20px 15px;
+    /* Reduced padding on mobile */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
     text-align: center;
-    height: auto; /* Let content determine height */
-    min-height: 300px; /* Minimum height for consistency */
+    height: auto;
+    /* Let content determine height */
+    min-height: 300px;
+    /* Minimum height for consistency */
     box-sizing: border-box;
 }
 
 /* Adjust slider controls positioning */
-.slider-controls-container, .slider-controls-container1 {
+.slider-controls-container,
+.slider-controls-container1 {
     width: 100%;
     display: flex;
-    justify-content: center; /* Center controls */
-    padding: 20px 0; /* Add some vertical spacing */
+    justify-content: center;
+    /* Center controls */
+    padding: 20px 0;
+    /* Add some vertical spacing */
     margin-top: 0;
 }
 
 /* Responsive adjustments */
 @media (min-width: 480px) {
-    .feature-slide, .feature-slide2 {
-        flex: 0 0 calc(50% - 20px); /* 2 slides on small tablets */
+
+    .feature-slide,
+    .feature-slide2 {
+        flex: 0 0 calc(50% - 20px);
+        /* 2 slides on small tablets */
     }
 }
 
 @media (min-width: 768px) {
-    .feature-slide, .feature-slide2 {
-        flex: 0 0 calc(33.33% - 20px); /* 3 slides on tablets */
+
+    .feature-slide,
+    .feature-slide2 {
+        flex: 0 0 calc(33.33% - 20px);
+        /* 3 slides on tablets */
     }
 }
 
 @media (min-width: 1024px) {
-    .feature-slide, .feature-slide2 {
-        flex: 0 0 calc(25% - 30px); /* 4 slides on desktop */
+
+    .feature-slide,
+    .feature-slide2 {
+        flex: 0 0 calc(25% - 30px);
+        /* 4 slides on desktop */
         margin: 0 15px;
         padding: 30px 25px;
     }
-    
-    .features-slider, .features-slider2 {
+
+    .features-slider,
+    .features-slider2 {
         padding: 0 20px;
     }
 }
@@ -355,12 +380,13 @@ body {
     .feature-title {
         font-size: 1.5rem;
     }
-    
+
     .feature-title2 {
         font-size: 1.5rem;
     }
-    
-    .feature-desc, .feature-desc2 {
+
+    .feature-desc,
+    .feature-desc2 {
         font-size: 1rem;
     }
 }
@@ -369,12 +395,13 @@ body {
     .feature-title {
         font-size: 1.3rem;
     }
-    
+
     .feature-title2 {
         font-size: 1.3rem;
     }
-    
-    .feature-desc, .feature-desc2 {
+
+    .feature-desc,
+    .feature-desc2 {
         font-size: 0.9rem;
     }
 }
@@ -397,7 +424,8 @@ body {
 .features-slider-container {
     width: 100%;
     position: relative;
-        overflow-x: hidden !important; /* Strictly enforce overflow hiding */
+    overflow-x: hidden !important;
+    /* Strictly enforce overflow hiding */
 
 }
 
@@ -464,43 +492,43 @@ body {
         flex: 0 0 calc(33.33% - 15px);
         min-height: 380px;
     }
-    
+
     .feature-title2 {
         font-size: 1.3rem;
     }
-    
+
     .feature-desc2 {
         font-size: 1rem;
     }
 
-     .feature-desc {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-    margin: 0;
-}
-  
+    .feature-desc {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+        margin: 0;
+    }
+
 }
 
 @media (max-width: 768px) {
-    
-   
-    
+
+
+
     .headingg {
         font-size: 2.5rem;
         padding-left: 2vh;
     }
-    
+
     .feature-slide2 {
         flex: 0 0 calc(50% - 15px);
         min-height: 350px;
         padding: 25px 20px;
     }
-    
+
     .feature-icon2 img {
         width: 100px;
     }
-    
+
     .feature-title2 {
         font-size: 1.2rem;
     }
@@ -512,48 +540,97 @@ body {
         padding-left: 1vh;
         margin-bottom: 20px;
     }
-    
+
     #second-page {
         padding: 20px 10px;
     }
-    
+
     .features-slider2 {
         padding: 0 10px;
         gap: 15px;
     }
-    
+
     .feature-slide2 {
         flex: 0 0 calc(100% - 15px);
         min-height: 300px;
         padding: 20px 15px;
     }
-    
-   .feature-icon2 img {
+
+    .feature-icon2 img {
         position: relative;
         width: 80px;
         /* right: 226vh; */
         left: 224px;
         bottom: 23px;
     }
-    
+
     .feature-title2 {
         font-size: 1.1rem;
     }
-    
+
     .feature-desc2 {
         font-size: 0.9rem;
     }
-    
+
+    .slider-controls {
+        gap: 15px;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .slider-controls-container {
+        bottom: 15px; /* Adjust for smaller screens */
+        right: 15px;
+    }
+
     .round-button {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
-    .slider-controls {
-        gap: 15px;
+}
+
+@media (max-width: 480px) {
+    .slider-controls-container {
+        bottom: 10px; /* Closer to bottom on small screens */
+        right: 10px;
+        transform: translateY(0); /* Remove any negative margins */
+    }
+
+    .round-button {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 }
+
+/* Device-Specific Adjustments */
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+    /* iPhone 13 Pro */
+    .slider-controls-container {
+        bottom: 12px;
+        right: 12px;
+    }
+}
+
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+    /* iPhone 11 */
+    .slider-controls-container {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 412px) and (min-device-pixel-ratio: 2) {
+    /* Samsung A15 and similar Android devices */
+    .slider-controls-container {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+
 
 .slider-container {
     position: static;
@@ -579,13 +656,21 @@ body {
 }
 
 /* Add these styles to your CSS */
+/* changing code of .slidecontrolscontainerbyanmol */
 .slider-controls-container {
-    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    /* Fixed distance from bottom */
+    right: 20px;
+    /* Fixed distance from right */
     display: flex;
     justify-content: flex-end;
-    padding-right: 0px;
-    margin-top: -4%;
-    position: relative;
+    align-items: center;
+    z-index: 10;
+    /* Ensure buttons are above slides */
+    padding: 0;
+    width: auto;
+    /* Allow natural width */
 }
 
 .slider-controls-container1 {
@@ -599,12 +684,14 @@ body {
 
 .slider-controls {
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    /* Consistent gap between buttons */
 }
 
 .round-button {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    /* Slightly smaller for better mobile fit */
+    height: 50px;
     border-radius: 50%;
     background-color: white;
     border: 2px solid #000;
@@ -612,8 +699,11 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    /* Slightly smaller font for mobile */
     transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
 }
 
 .round-button:hover {
@@ -875,17 +965,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px 0; /* Adjusted padding to remove extra space */
+    padding: 40px 0;
+    /* Adjusted padding to remove extra space */
     box-sizing: border-box;
     margin-bottom: 10px;
     background-color: white;
-    overflow-x: hidden; /* Ensure no overflow at the section level */
+    overflow-x: hidden;
+    /* Ensure no overflow at the section level */
 }
 
 .features-slider-container {
     width: 100%;
     position: relative;
-    overflow-x: hidden !important; /* Strictly enforce overflow hiding */
+    overflow-x: hidden !important;
+    /* Strictly enforce overflow hiding */
 }
 
 .features-slider {
@@ -897,8 +990,10 @@ body {
 }
 
 .feature-slide {
-    flex: 0 0 calc(25% - 10px); /* Reduced margin to minimize gaps */
-    margin: 0 5px; /* Adjusted margin for tighter spacing */
+    flex: 0 0 calc(25% - 10px);
+    /* Reduced margin to minimize gaps */
+    margin: 0 5px;
+    /* Adjusted margin for tighter spacing */
     background-color: #fff;
     border-radius: 12px;
     padding: 20px 15px;
@@ -957,25 +1052,6 @@ body {
     gap: 20px;
 }
 
-.round-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: white;
-    border: 2px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.round-button:hover {
-    background-color: #000;
-    color: #fff;
-}
-
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .feature-slide {
@@ -1028,7 +1104,8 @@ body {
     }
 
     .feature-slide {
-        flex: 0 0 calc(100% - 10px); /* Full width on mobile */
+        flex: 0 0 calc(100% - 10px);
+        /* Full width on mobile */
         margin: 0 5px;
         min-height: 200px;
         padding: 15px;
@@ -1521,7 +1598,7 @@ body {
     #navbar ul.active {
         max-height: 474px;
         padding: 10px 0;
-        
+
         background-color: white;
         /* Ensure solid white background when active */
         opacity: 1;
@@ -1578,13 +1655,39 @@ body {
 
 }
 
-@media (max-width: 480px) {
+
+/* iPhone SE (~375px wide) */
+@media (max-width: 380px) {
     .slider-controls-container {
-
-        margin-top: -49%;
+        margin-top: -20%;
     }
+}
+
+/* Medium phones (~390-420px) like Samsung A51 */
+@media (min-width: 381px) and (max-width: 480px) {
+    .slider-controls-container {
+        margin-top: -45%;
+        /* Tune based on testing */
+    }
+}
 
 
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+
+    /* iPhone 13 Pro specific styles here */
+    .slider-controls-container {
+        bottom: 8vh;
+        /* adjust based on your layout */
+        margin-top: 0;
+        /* or whatever override you need */
+    }
+}
+
+
+
+
+
+@media (max-width: 480px) {
     #main-title {
         font-size: 2rem;
     }
@@ -1604,7 +1707,7 @@ body {
 
 @media (max-width: 480px) {
     .slider-controls {
-        padding-bottom: 1vh;
+        padding-bottom: 2vh;
         z-index: 30;
     }
 
@@ -1818,24 +1921,6 @@ body {
     gap: 10px;
 }
 
-.round-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
-
-.round-button:hover {
-    background-color: #000;
-    color: #fff;
-}
 
 .spec-labels {
     display: flex;
@@ -1949,7 +2034,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent overlay */
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -2047,7 +2133,8 @@ body {
     padding: 0px 20px;
     box-sizing: border-box;
     overflow-x: hidden;
-    min-height: 75vh; /* Match slides-container height */
+    min-height: 75vh;
+    /* Match slides-container height */
 }
 
 #second-page * {
@@ -2063,7 +2150,8 @@ body {
     border-radius: 12px;
     /* Static depth shadow for popped-up box effect */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15);
-    background: #fff; /* Solid background for card effect */
+    background: #fff;
+    /* Solid background for card effect */
     z-index: 1;
 }
 
@@ -2163,4 +2251,5 @@ body {
         font-size: 0.8rem;
     }
 }
+
 /* second page css ends */

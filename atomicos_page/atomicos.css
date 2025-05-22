@@ -1,18 +1,23 @@
-/* Enhance overscroll behavior */
-html {
-  scroll-behavior: smooth;
-  overscroll-behavior: auto;
+/* Add this at the top of your CSS to prevent horizontal overflow */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-/* Ensure body doesn't cause overflow issues */
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
+/* Fix for box-container to prevent horizontal scroll */
+.box-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 40px auto 0;
+    max-width: calc(100% - 40px); /* Ensure it never exceeds viewport */
 }
 
-/* Smooth transitions for page sections */
+/* Ensure all sections stay within viewport */
 #first-page,
 #second-page,
 #third-page,
@@ -23,13 +28,96 @@ body {
 #eighth-page,
 #ninth-page,
 #tenth-page {
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Specifically fix the hero image container */
+.hero-container {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Fix for section text containers */
+.section-text-container {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Additional fixes for mobile */
+@media (max-width: 768px) {
+    .box {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+    }
+    
+    .section-text-container {
+        width: calc(100% - 30px);
+        padding: 20px;
+    }
+    
+    .hero-image {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        width: calc(100% - 20px);
+        padding: 15px;
+    }
+    
+    .section-text-container {
+        width: calc(100% - 20px);
+        padding: 15px;
+    }
+    
+    .hero-image {
+        width: 95%;
+    }
+    
+    #main-title {
+        font-size: 2rem;
+        white-space: nowrap;
+    }
+    
+    #subtitle {
+        font-size: 1.2rem;
+        white-space: normal;
+    }
+}
+
+/* Ensure footer doesn't cause overflow */
+#footer {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+.footer-top {
+    width: calc(100% - 48px);
+    margin: 0 auto;
 }
 
 /* Optimize performance for animations */
-.hero-image, .box, .step-box, .section-text-container {
-  will-change: transform, opacity;
+.hero-image,
+.box,
+.step-box,
+.section-text-container {
+    will-change: transform, opacity;
 }
 
 .matter-content {
@@ -39,7 +127,7 @@ body {
     height: 100px;
     max-width: 93%;
     /* margin-bottom: -135px; */
-    top: 13%;
+    top: 11%;
     flex-direction: row;
     align-items: end;
     justify-content: space-between;
@@ -73,7 +161,7 @@ body {
 
 #first-page {
     position: relative;
-    height: 85vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -83,7 +171,7 @@ body {
     margin-bottom: 10px;
 }
 
-.hero-container {
+/* .hero-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -91,14 +179,34 @@ body {
 }
 
 .hero-image {
-    width: 37%;
+    height: 76.39vh;
+    width: 101.63vh;
     background-color: #ffffff00;
     object-fit: cover;
     position: absolute;
-    top: 117px;
-    left: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     opacity: 0.9;
+    transition: opacity 0.3s ease;
+} */
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    width: auto;
+    height: auto;
+    height: 76.39vh;
+    width: 101.63vh;
+    object-fit: contain;
     transition: opacity 0.3s ease;
 }
 
@@ -109,7 +217,7 @@ body {
 
 #main-title {
     position: relative;
-    font-size: 4rem;
+    font-size: 70px;
     font-weight: 700;
     color: #333333;
     margin: 0;
@@ -118,26 +226,15 @@ body {
 
 #subtitle {
     position: relative;
-    font-size: 29px;
-    font-weight: 600;
+    font-size: 45px;
+    font-weight: 400;
     color: #666666;
-    margin: 8px 0 0;
-    max-width: 403px;
+    margin: 2px 0px 12px;
+    max-width: 474px;
     line-height: 1.5;
     text-align: center;
 }
 
-/* Responsive adjustments for first page */
-@media (max-width: 1670px) {
-    #main-title {
-        font-size: 3.5rem;
-    }
-
-    #subtitle {
-        font-size: 1.1rem;
-        max-width: 350px;
-    }
-}
 
 @media (max-width: 1180px) {
     #main-title {
@@ -159,6 +256,9 @@ body {
 }
 
 @media (max-width: 768px) {
+        .matter-content {
+        top: 6%;
+    }
     #main-title {
         font-size: 3rem;
     }
@@ -219,28 +319,23 @@ body {
     }
 }
 
-/* Responsive adjustments for hero-container and hero-image */
-@media (max-width: 1670px) {
-    .hero-image {
-        width: 40%;
-        top: 100px;
-        left: 30%;
-    }
-}
+
 
 @media (max-width: 1180px) {
     .hero-image {
-        width: 72%;
-        top: 90px;
-        left: 14%;
+       width: 80%;
+        top: 40vh;
+        position: relative;
+        left: 42%;
     }
 }
 
 @media (max-width: 768px) {
     .hero-image {
-        width: 91%;
-        top: 80px;
-        left: 4%;
+       width: 80%;
+        top: 40vh;
+        position: relative;
+        left: 42%;
     }
 }
 
@@ -251,10 +346,10 @@ body {
     }
 
     .hero-image {
-        width: 80%;
-        top: 3vh;
+       width: 80%;
+        top: 40vh;
         position: relative;
-        left: 10%;
+        left: 42%;
     }
 }
 
@@ -499,7 +594,7 @@ body {
     /* No additional navbar-specific changes needed here */
 }
 
-/* ========== SECOND PAGE ========== */
+/* Second Page - Keeping your exact structure */
 #second-page {
     position: relative;
     min-height: 100vh;
@@ -514,178 +609,246 @@ body {
 
 .page-content {
     text-align: center;
-    max-width: 1200px;
+    max-width: 1691px;
     margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
 }
 
-/* ========== SECOND PAGE HEADINGS, DESCRIPTION, AND TEXT ========== */
 #second-title {
-    font-size: 3.25rem;
+    font-size: 70px;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 16px;
-    animation: fadeInUp 1s ease-out;
 }
 
 #second-subtitle {
-    font-size: 33px;
+    font-size: 40px;
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 16px;
+    margin-bottom: -17px;
     line-height: 1.2;
-    animation: fadeInUp 1s ease-out 0.2s forwards;
-    opacity: 0;
 }
 
 #second-description {
-    font-size: 39px;
+    font-size: 65px;
     font-weight: 500;
     color: var(--text-dark);
     text-align: left;
-    margin-top: 88px;
-    animation: fadeInUp 1s ease-out 0.4s forwards;
-    opacity: 0;
+    margin-top: 62px;
+    width: 100%;
 }
 
 #second-text {
-    font-size: 19px;
+    font-size: 40px;
     font-weight: 400;
     color: #4a5568;
-    max-width: 800px;
     text-align: left;
     width: 100%;
     line-height: 1.7;
-    animation: fadeInUp 1s ease-out 0.6s forwards;
-    opacity: 0;
-    overflow-wrap: break-word;
+    margin-top: -6vh;
 }
 
-/* ========== RESPONSIVE STYLES FOR SECOND PAGE HEADINGS, DESCRIPTION, AND TEXT ========== */
-@media (max-width: 1024px) {
-
-
-    #second-title {
-        font-size: 2rem;
-    }
-
-    #second-subtitle {
-        font-size: 2.5rem;
-    }
-
-    #second-description {
-        font-size: 1.25rem;
-        margin-top: 60px;
-        text-align: center;
-    }
-
-    #second-text {
-        font-size: 1rem;
-        max-width: 700px;
-        text-align: center;
-    }
-
-
-}
-
-@media (max-width: 768px) {
-    #second-title {
-        font-size: 1.75rem;
-    }
-
-    #second-subtitle {
-        font-size: 2rem;
-    }
-
-    #second-description {
-        font-size: 1.125rem;
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    #second-text {
-        font-size: 0.95rem;
-        max-width: 600px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    #second-title {
-        font-size: 1.5rem;
-    }
-
-    #second-subtitle {
-        font-size: 1.75rem;
-    }
-
-    #second-description {
-        font-size: 1rem;
-        margin-top: 30px;
-        text-align: center;
-    }
-
-    #second-text {
-        font-size: 0.875rem;
-        max-width: 500px;
-        text-align: center;
-    }
-}
-
+/* Fix for box-container overflow */
 .box-container {
     display: flex;
     justify-content: center;
     gap: 24px;
-    padding-top: 5vh;
+    width: 100%;
     flex-wrap: wrap;
+    padding: 0 20px; /* Add padding to prevent edge touching */
+    box-sizing: border-box; /* Include padding in width calculation */
+    margin: 40px auto 0;
+    max-width: 1800px; /* Set a reasonable max-width */
 }
 
 .box {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 24px;
-    height: 29vh;
-    width: 300px;
+    height: auto;
+    min-height: 300px;
+    flex: 1 1 300px; /* Flex grow, shrink, basis */
+    max-width: calc(33.33% - 24px); /* 3 boxes per row with gap */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     background-color: lightgrey;
-}
-
-.box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.image-container {
-    width: 100%;
-    height: 160px;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.box:hover .image-container img {
-    transform: scale(1.05);
+    box-sizing: border-box; /* Include padding in width */
+    overflow: hidden; /* Prevent content from overflowing */
 }
 
 .box h4 {
-    font-size: 1.5rem;
+    font-size: clamp(24px, 2.5vw, 33px); /* Responsive font size */
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 12px;
+    word-break: break-word; /* Prevent heading overflow */
 }
 
 .box p {
-    font-size: 1rem;
+    font-size: clamp(16px, 2vw, 20px); /* Responsive font size */
+    text-align: center;
+    font-weight: 400;
     color: #4a5568;
     line-height: 1.6;
+    margin: 0;
+    word-break: break-word; /* Prevent text overflow */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .box {
+        max-width: calc(50% - 24px); /* 2 boxes per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .box-container {
+        gap: 16px;
+        padding: 0 15px;
+    }
+    .box {
+        max-width: 100%; /* 1 box per row on small screens */
+        min-height: auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box-container {
+        padding: 0 10px;
+    }
+    .box {
+        padding: 16px;
+    }
+    .box h4 {
+        font-size: 20px;
+    }
+    .box p {
+        font-size: 16px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1600px) {
+    #second-title {
+        font-size: 60px;
+    }
+    #second-subtitle {
+        font-size: 35px;
+    }
+    #second-description {
+        font-size: 55px;
+        margin-top: 50px;
+    }
+    #second-text {
+        font-size: 35px;
+    }
+    .box h4 {
+        font-size: 28px;
+    }
+    .box p {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #second-title {
+        font-size: 50px;
+    }
+    #second-subtitle {
+        font-size: 30px;
+    }
+    #second-description {
+        font-size: 45px;
+        margin-top: 40px;
+    }
+    #second-text {
+        font-size: 30px;
+    }
+    .box {
+        min-width: 250px;
+    }
+    .box h4 {
+        font-size: 24px;
+    }
+    .box p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    #second-page {
+        min-height: auto;
+        padding: 60px 20px;
+    }
+    #second-title {
+        font-size: 40px;
+    }
+    #second-subtitle {
+        font-size: 25px;
+    }
+    #second-description, #second-text {
+        text-align: center;
+    }
+    #second-description {
+        font-size: 35px;
+        margin-top: 30px;
+    }
+    #second-text {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+    .box-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #second-title {
+        font-size: 35px;
+    }
+    #second-subtitle {
+        font-size: 22px;
+    }
+    #second-description {
+        font-size: 30px;
+    }
+    #second-text {
+        font-size: 20px;
+    }
+    .box {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .box h4 {
+        font-size: 22px;
+    }
+    .box p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    #second-title {
+        font-size: 30px;
+    }
+    #second-subtitle {
+        font-size: 20px;
+        margin-bottom: -10px;
+    }
+    #second-description {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+    #second-text {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+    .box {
+        padding: 20px;
+    }
 }
 
 .zzz {
@@ -835,7 +998,7 @@ body {
 }
 
 .how-to-start {
-    max-width: 1414px;
+    max-width: 100%;
     margin: 0 auto;
     text-align: center;
 }
@@ -867,7 +1030,7 @@ body {
 }
 
 .section-title1 {
-    font-size: 2.5rem;
+    font-size: 70px;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 32px;
@@ -887,8 +1050,8 @@ body {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 24px;
-    height: 57vh;
-    width: 248px;
+    height: 49.63vh;
+    width: 39.63vh;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
@@ -914,6 +1077,7 @@ body {
     font-weight: 500;
     color: #4a5568;
     line-height: 1.6;
+    padding-top: 8vh;
     overflow-wrap: break-word;
 }
 
@@ -931,7 +1095,7 @@ body {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     border-radius: 12px;
     padding: 6vh;
-    width: 300px;
+    width: 28.28vh;
     display: inline-block;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -973,7 +1137,7 @@ body {
     font-size: 3.125rem;
     font-weight: 400;
     color: #4a5568;
-    margin-top: 67px;
+    margin-top: 34px;
     animation: fadeInUp 1s ease-out 0.8s forwards;
     opacity: 0;
     overflow-wrap: break-word;
@@ -1682,6 +1846,6 @@ body {
     .box,
     .step-box {
         width: calc(100% - 20px);
-        /* Accounts for padding */
+        height: 40vh;
     }
 }
