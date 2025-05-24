@@ -221,7 +221,7 @@ body {
     height: 100px;
     max-width: 90%;
     /* margin-bottom: -135px; */
-    top: 9%;
+    top: 17%;
 }
 
 #main-title {
@@ -1260,7 +1260,6 @@ body {
 @media (max-width: 1670px) {
     #main-title {
         font-size: 3rem;
-
         left: 15px;
         right: auto;
     }

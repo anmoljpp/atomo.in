@@ -127,7 +127,7 @@ html, body {
     height: 100px;
     max-width: 93%;
     /* margin-bottom: -135px; */
-    top: 11%;
+    top: 12%;
     flex-direction: row;
     align-items: end;
     justify-content: space-between;
@@ -217,7 +217,7 @@ body {
 
 #main-title {
     position: relative;
-    font-size: 70px;
+    font-size: 3rem;
     font-weight: 700;
     color: #333333;
     margin: 0;
@@ -226,7 +226,7 @@ body {
 
 #subtitle {
     position: relative;
-    font-size: 45px;
+    font-size: 1.5rem;
     font-weight: 400;
     color: #666666;
     margin: 2px 0px 12px;
